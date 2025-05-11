@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JogoDaForca-Melhorado.ConsoleApp1", "JogoDaForca-Melhorado.ConsoleApp1\JogoDaForca-Melhorado.ConsoleApp1.csproj", "{041574B5-2ACB-41A5-A626-42EE53DA105A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{041574B5-2ACB-41A5-A626-42EE53DA105A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041574B5-2ACB-41A5-A626-42EE53DA105A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041574B5-2ACB-41A5-A626-42EE53DA105A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041574B5-2ACB-41A5-A626-42EE53DA105A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A62D1E9A-4CD4-4838-8146-2767170F8492}
+	EndGlobalSection
+EndGlobal
