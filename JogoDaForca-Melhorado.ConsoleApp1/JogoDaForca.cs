@@ -11,7 +11,7 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
 
     }
 
-   
+
     public class PalavraSecreta
     {
         //------------ Entrada de dados ----------------
@@ -106,4 +106,32 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
             return palavraSecretaOcultada;
         }
     }
+
+    public class VerificadorDoValorChutado
+    {
+        public char valorChutado = ' ';
+        
+        public VerificadorDoValorChutado(char temp)
+        {
+            valorChutado = temp;
+        }
+
+        // vai verificar SE é letra
+        public char VerificaLetra()
+        {
+            do
+            {
+                if (!char.IsLetter(valorChutado))
+                {
+                    Console.Write("Não é uma letra. Digite uma letra: ");
+                    valorChutado = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
+                }
+                else
+                {
+                    return valorChutado;
+                }
+            } while (true);
+        }
+    }
+
 }

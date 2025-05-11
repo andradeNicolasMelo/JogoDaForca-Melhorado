@@ -22,7 +22,7 @@
 
             string palavraSecreta = palavra.palavraSecreta;
             Console.WriteLine();
-            Console.WriteLine($"CategoriaW: {palavra.categoria}");
+            Console.WriteLine($"Categoria: {palavra.categoria}");
             Console.WriteLine($"Palavra Secreta: {palavraSecreta}");
             Console.WriteLine();
             //---------------------------------------------
@@ -35,6 +35,17 @@
             Console.WriteLine();
             Console.WriteLine($"{ocultacaoDaPalavra.MostrarPalavraOcultada()}");
             Console.WriteLine();
+            //---------------------------------------------
+
+            //---------- Usuario chuta uma letra ----------
+            //=============================================
+            Console.WriteLine("Chute uma letra: ");
+            char valorChutado = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
+            //=============================================
+
+            //---------- Verifica se é uma letra ----------
+            VerificadorDoValorChutado verificador = new VerificadorDoValorChutado(valorChutado);
+            char letraChutada = verificador.VerificaLetra();
             //---------------------------------------------
 
         }

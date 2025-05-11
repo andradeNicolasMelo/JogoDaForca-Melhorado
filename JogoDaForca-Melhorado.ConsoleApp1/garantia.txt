@@ -1,0 +1,223 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace jogoDaForca_Refotorado.ConsoleApp1
+{
+    public class JogoDaForca
+    {
+
+    }
+
+
+    public class PalavraSecreta
+    {
+        //------------ Entrada de dados ----------------
+
+        public string opcaoEscolhida;
+
+        public PalavraSecreta(string temp)
+        {
+            opcaoEscolhida = temp;
+        }
+        //--------------------------------------------
+
+        public string palavraSecreta = "";
+        public string categoria = ""; //categoria escolhida. Apenas tem a função de informar a categoria para o usuario
+        public void DefinicaoPalavraSecreta()
+        {
+
+            do
+            {
+                if (opcaoEscolhida == "1")
+                {
+                    string[] frutas = { "ABACATE", "ABACAXI", "ACEROLA", "ACAI", "ARACA", "ABACATE", "BACABA", "BACURI", "BANANA", "CAJA", "CAJU", "CARAMBOLA", "CUPUACU", "GRAVIOLA", "GOIABA", "JABUTICABA", "JENIPAPO", "MACA", "MANGABA", "MANGA", "MARACUJA", "MURICI", "PEQUI", "PITANGA", "PITAYA", "SAPOTI", "TANGERINA", "UMBU", "UVA", "UVAIA" };
+
+                    Random random = new Random();
+                    int indice = random.Next(frutas.Length);
+
+                    palavraSecreta = frutas[indice];
+                    categoria = "Frutas";
+
+                    break;
+                }
+
+                else if (opcaoEscolhida == "2")
+                {
+                    string[] animais = { "CACHORRO", "GATO", "ELEFANTE", "LEAO", "TIGRE", "ZEBRA", "GIRAFA", "MACACO", "RINOCERONTE", "HIPOPOTAMO", "COBRA", "JACARE", "ARARA", "TUCANO", "PANTERA", "LOBO", "URSO", "CAMELO", "GOLFINHO", "BALEIA", "TARTARUGA", "PINGUIM", "CORUJA", "FOCA", "LEOPARDO", "AVESTRUZ", "GALO", "SAPO", "CARANGUEIJO", "BORBOLETA" };
+
+                    Random random = new Random();
+                    int indice = random.Next(animais.Length);
+
+                    palavraSecreta = animais[indice];
+                    categoria = "Animais";
+
+                    break;
+                }
+
+                else if (opcaoEscolhida == "3")
+                {
+                    string[] paises = { "BRASIL", "ARGENTINA", "CANADA", "CHILE", "COLOMBIA", "CUBA", "EQUADOR", "ESTADOS_UNIDOS", "FRANÇA", "ALEMANHA", "INDIA", "ITALIA", "JAPAO", "MÉXICO", "PORTUGAL", "RUSSIA", "ESPANHA", "SUECIA", "SUICA", "CHINA", "AFRICA_DO_SUL", "AUSTRÁLIA", "BELGICA", "DINAMARCA", "EGITO", "FILIPINAS", "GRECIA", "HOLANDA", "IRLANDA", "NORUEGA" };
+
+                    Random random = new Random();
+                    int indice = random.Next(paises.Length);
+
+                    palavraSecreta = paises[indice];
+                    categoria = "Países";
+
+                    break;
+                }
+
+                else
+                {
+                    Console.Write("Escolha 1, 2 ou 3: ");
+                    opcaoEscolhida = Console.ReadLine()!;
+                }
+            } while (true);
+        }
+    }
+
+    public class OcultacaoPalavraSecreta
+    {
+        public string palavraSecreta;
+        public char[] LetrasDaPalavraSecreta;
+        public char[] arrayLetrasOcultadas;
+
+        public OcultacaoPalavraSecreta(string temp)
+        {
+            palavraSecreta = temp;
+            LetrasDaPalavraSecreta = palavraSecreta.ToCharArray();
+            arrayLetrasOcultadas = new char[LetrasDaPalavraSecreta.Length];
+        }
+
+        public void RealizacaoDaOcultacao()
+        {
+            for (int i = 0; i < palavraSecreta.Length; i++)
+            {
+                arrayLetrasOcultadas[i] = '-';
+            }
+        }
+        public string MostrarPalavraOcultada()
+        {
+            string palavraSecretaOcultada = string.Join("", arrayLetrasOcultadas);
+
+            return palavraSecretaOcultada;
+        }
+    }
+
+    public class RevaladorDeLetras
+    {
+        public char letraChutada;
+        public char[] LetrasDaPalavraSecreta;
+        public char[] arrayLetrasOcultadas;
+        public string palavraSecreta;
+
+        public RevaladorDeLetras(char temp ,char[] temp2, char[] temp3, string temp4)
+        {
+            letraChutada = temp;
+            LetrasDaPalavraSecreta = temp2;
+            arrayLetrasOcultadas = temp3;
+        }
+
+        public int contadorDeErros = 0;
+        int tentativas = 0;
+        public void ReveladorLetras()
+        {
+            while (tentativas <= 5)
+            {
+                string palavraSecretaRevelada = string.Join("", arrayLetrasOcultadas);
+                bool letraChutadaIgualApalavraSecreta = false;
+                for (int i = 0; i < LetrasDaPalavraSecreta.Length; i++)
+                {
+                    if (letraChutada == LetrasDaPalavraSecreta[i])
+                    {
+                        arrayLetrasOcultadas[i] = letraChutada;
+                        palavraSecretaRevelada = string.Join("", arrayLetrasOcultadas);
+                        letraChutadaIgualApalavraSecreta = true;
+                    }
+
+                }
+
+                if (!letraChutadaIgualApalavraSecreta)
+                {
+                    contadorDeErros++;
+                }
+
+                if (palavraSecretaRevelada == palavraSecreta)
+                {
+                    Console.WriteLine("Jogo acabou");
+                    break;
+                }
+
+                Console.WriteLine();
+                Console.WriteLine($"Dica da palavra: {palavraSecretaRevelada}");
+                Console.WriteLine($"Contador de Erros: {contadorDeErros}");
+                Console.WriteLine();
+                Console.WriteLine($"Chute uma palavra: ");
+                letraChutada = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
+
+
+                tentativas++;
+            }
+        }
+    }
+
+}
+
+namespace jogoDaForca_Refotorado.ConsoleApp1
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            Console.WriteLine("========================================");
+            Console.WriteLine("Jogo da forca");
+            Console.WriteLine("========================================");
+            Console.WriteLine("1 - Frutas");
+            Console.WriteLine("2 - Animais");
+            Console.WriteLine("3 - Paises");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine();
+            Console.Write("Escolha a categoria da palavra secreta: ");
+            string opcaoEscolhida = Console.ReadLine()!;
+
+            //---- ESCOLHA DA PALAVRA SECRETA -------------
+            PalavraSecreta palavra = new PalavraSecreta(opcaoEscolhida);
+            palavra.DefinicaoPalavraSecreta();
+
+
+            string palavraSecreta = palavra.palavraSecreta;
+            Console.WriteLine();
+            Console.WriteLine($"Categoria: {palavra.categoria}");
+            Console.WriteLine($"Palavra Secreta: {palavraSecreta}");
+            Console.WriteLine();
+            //---------------------------------------------
+
+            //------- OCULTAÇÃO DA PALAVRA SECRETA ---------
+            OcultacaoPalavraSecreta ocultacaoDaPalavra = new OcultacaoPalavraSecreta(palavraSecreta);
+            ocultacaoDaPalavra.RealizacaoDaOcultacao();
+            ocultacaoDaPalavra.MostrarPalavraOcultada();
+
+            Console.WriteLine();
+            Console.WriteLine($"{ocultacaoDaPalavra.MostrarPalavraOcultada()}");
+            Console.WriteLine();
+            //---------------------------------------------
+
+            //=============================================
+            Console.WriteLine("Chute uma letra: ");
+            char letraChutada = Convert.ToChar(Console.ReadLine()!.ToUpper());
+            //=============================================
+
+
+            //------- Revelador de letras -------------
+            Console.WriteLine();
+            RevaladorDeLetras revelador = new RevaladorDeLetras(letraChutada ,ocultacaoDaPalavra.LetrasDaPalavraSecreta, ocultacaoDaPalavra.arrayLetrasOcultadas, palavraSecreta);
+            revelador.ReveladorLetras();
+            Console.WriteLine();
+            //---------------------------------------------
+
+        }
+    }
+}
