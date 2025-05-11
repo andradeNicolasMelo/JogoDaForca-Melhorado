@@ -11,6 +11,7 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
 
     }
 
+   
     public class PalavraSecreta
     {
         //------------ Entrada de dados ----------------
