@@ -134,4 +134,105 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
         }
     }
 
+    public class RevaladorDeLetras
+    {
+        public char letraChutada;
+        public char[] LetrasDaPalavraSecreta;
+        public char[] arrayLetrasOcultadas;
+        public string palavraSecreta;
+
+        public RevaladorDeLetras(char temp, char[] temp2, char[] temp3, string temp4)
+        {
+            letraChutada = temp;
+            LetrasDaPalavraSecreta = temp2;
+            arrayLetrasOcultadas = temp3;
+            palavraSecreta = temp4;
+        }
+
+        public int contadorDeErros = 0;
+        int tentativas = 5;
+
+        public void ReveladorLetras()
+        {
+            char[] letrasChutadas = new char[26];
+            int indice = 0;
+
+            while (true)
+            {
+                for(int i = 0; i < letrasChutadas.Length; i++)
+                {
+                    while(letraChutada == letrasChutadas[i])
+                    {
+                        Console.WriteLine("Letra já chutada. Chute outra letra: ");
+                        letraChutada = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
+                    }
+                }
+
+                letrasChutadas[indice] = letraChutada;
+                indice++;
+
+                string visualizacaoDeLetrasChutadas = string.Join(" ", letrasChutadas);
+
+                string palavraSecretaRevelada = string.Join("", arrayLetrasOcultadas);
+                bool letraChutadaIgualApalavraSecreta = false;
+
+                for (int i = 0; i < LetrasDaPalavraSecreta.Length; i++)
+                {
+                    if (letraChutada == LetrasDaPalavraSecreta[i])
+                    {
+                        arrayLetrasOcultadas[i] = letraChutada;
+                        palavraSecretaRevelada = string.Join("", arrayLetrasOcultadas);
+                        letraChutadaIgualApalavraSecreta = true;
+                    }
+                }
+
+                if (!letraChutadaIgualApalavraSecreta)
+                {
+                    contadorDeErros++;
+                    tentativas--;
+
+                    Console.WriteLine();
+                    Console.WriteLine("----------------------------------------------------------------");
+                    Console.WriteLine($"errou {contadorDeErros} vezes. restam {tentativas} tentativas");
+                    Console.WriteLine("----------------------------------------------------------------");
+                    Console.WriteLine();
+                }
+
+                if (palavraSecretaRevelada == palavraSecreta)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("----------------------------------------------------------------");
+                    Console.WriteLine($"Parabens! Você acertou a palavra {palavraSecretaRevelada}");
+                    Console.WriteLine("Jogo acabou");
+                    Console.WriteLine();
+
+                    break;
+                }
+
+                if (contadorDeErros == 5)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("----------------------------------------------------------------");
+                    Console.WriteLine("Infelizmente voce perdeu");
+                    Console.WriteLine($"A palavra era {palavraSecreta}");
+                    Console.WriteLine("Jogo acabou");
+                    Console.WriteLine("----------------------------------------------------------------");
+                    Console.WriteLine();
+
+                    break;
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine($"Dica da palavra: {palavraSecretaRevelada}");
+                Console.WriteLine($"Letras chutadas: {visualizacaoDeLetrasChutadas}");
+                Console.WriteLine();
+                Console.Write($"Chute uma palavra: ");
+                letraChutada = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
+                Console.WriteLine("----------------------------------------------------------------");
+                Console.WriteLine();
+            }
+        }
+    }
+
 }

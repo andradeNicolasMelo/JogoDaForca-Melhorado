@@ -15,6 +15,7 @@
             Console.Write("Escolha a categoria da palavra secreta: ");
             string opcaoEscolhida = Console.ReadLine()!;
 
+
             //---- ESCOLHA DA PALAVRA SECRETA -------------
             PalavraSecreta palavra = new PalavraSecreta(opcaoEscolhida);
             palavra.DefinicaoPalavraSecreta();
@@ -27,6 +28,7 @@
             Console.WriteLine();
             //---------------------------------------------
 
+
             //------- OCULTAÇÃO DA PALAVRA SECRETA ---------
             OcultacaoPalavraSecreta ocultacaoDaPalavra = new OcultacaoPalavraSecreta(palavraSecreta);
             ocultacaoDaPalavra.RealizacaoDaOcultacao();
@@ -37,17 +39,26 @@
             Console.WriteLine();
             //---------------------------------------------
 
+
             //---------- Usuario chuta uma letra ----------
             //=============================================
             Console.WriteLine("Chute uma letra: ");
             char valorChutado = Convert.ToChar(Console.ReadLine()!.ToUpper()[0]);
             //=============================================
 
+
             //---------- Verifica se é uma letra ----------
             VerificadorDoValorChutado verificador = new VerificadorDoValorChutado(valorChutado);
             char letraChutada = verificador.VerificaLetra();
             //---------------------------------------------
 
+
+            //----------- Revelador de letras -------------
+            Console.WriteLine();
+            RevaladorDeLetras revelador = new RevaladorDeLetras(letraChutada, ocultacaoDaPalavra.LetrasDaPalavraSecreta, ocultacaoDaPalavra.arrayLetrasOcultadas, palavraSecreta);
+            revelador.ReveladorLetras();
+            Console.WriteLine();
+            //---------------------------------------------
         }
     }
 }
