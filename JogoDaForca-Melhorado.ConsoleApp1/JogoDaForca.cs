@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace jogoDaForca_Refotorado.ConsoleApp1
 {
-    public class JogoDaForca
-    {
-
-    }
-
-
     public class PalavraSecreta
     {
         //------------ Entrada de dados ----------------
@@ -188,6 +182,8 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
 
                 if (!letraChutadaIgualApalavraSecreta)
                 {
+                    Console.Clear();
+
                     contadorDeErros++;
                     tentativas--;
 
@@ -196,6 +192,27 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
                     Console.WriteLine($"errou {contadorDeErros} vezes. restam {tentativas} tentativas");
                     Console.WriteLine("----------------------------------------------------------------");
                     Console.WriteLine();
+
+                    string cabecaDoBoneco = contadorDeErros >= 1 ? " o " : " ";
+                    string tronco = contadorDeErros >= 2 ? "x" : " ";
+                    string troncoBaixo = contadorDeErros >= 2 ? " x " : " ";
+                    string bracoEsquerdo = contadorDeErros >= 3 ? "/" : " ";
+                    string bracoDireito = contadorDeErros >= 4 ? @"\" : " ";
+                    string pernas = contadorDeErros >= 5 ? "/ \\" : " ";
+
+
+                    Console.WriteLine("----------------------------------------------");
+                    Console.WriteLine("Jogo da Forca");
+                    Console.WriteLine("----------------------------------------------");
+                    Console.WriteLine(" ___________        ");
+                    Console.WriteLine(" |/        |        ");
+                    Console.WriteLine(" |        {0}       ", cabecaDoBoneco);
+                    Console.WriteLine(" |        {0}{1}{2} ", bracoEsquerdo, tronco, bracoDireito);
+                    Console.WriteLine(" |        {0}       ", troncoBaixo);
+                    Console.WriteLine(" |        {0}       ", pernas);
+                    Console.WriteLine(" |                  ");
+                    Console.WriteLine(" |                  ");
+                    Console.WriteLine("_|____              ");
                 }
 
                 if (palavraSecretaRevelada == palavraSecreta)
@@ -235,4 +252,7 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
         }
     }
 
+    public class JogoDaForca
+    {
+    }
 }

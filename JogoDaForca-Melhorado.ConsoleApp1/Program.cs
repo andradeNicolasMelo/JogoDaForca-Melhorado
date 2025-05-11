@@ -7,6 +7,7 @@
             Console.WriteLine("========================================");
             Console.WriteLine("Jogo da forca");
             Console.WriteLine("========================================");
+
             Console.WriteLine("1 - Frutas");
             Console.WriteLine("2 - Animais");
             Console.WriteLine("3 - Paises");
