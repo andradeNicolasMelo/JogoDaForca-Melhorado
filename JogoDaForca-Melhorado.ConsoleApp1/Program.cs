@@ -15,15 +15,28 @@
             Console.Write("Escolha a categoria da palavra secreta: ");
             string opcaoEscolhida = Console.ReadLine()!;
 
-            //---------------------------------------------
+            //---- ESCOLHA DA PALAVRA SECRETA -------------
             PalavraSecreta palavra = new PalavraSecreta(opcaoEscolhida);
             palavra.DefinicaoPalavraSecreta();
 
+
+            string palavraSecreta = palavra.palavraSecreta;
             Console.WriteLine();
-            Console.WriteLine($"Categoria: {palavra.categoria}");
-            Console.WriteLine($"Palavra Secreta: {palavra.palavraSecreta}");
+            Console.WriteLine($"CategoriaW: {palavra.categoria}");
+            Console.WriteLine($"Palavra Secreta: {palavraSecreta}");
             Console.WriteLine();
             //---------------------------------------------
+
+            //------- OCULTAÇÃO DA PALAVRA SECRETA ---------
+            OcultacaoPalavraSecreta ocultacaoDaPalavra = new OcultacaoPalavraSecreta(palavraSecreta);
+            ocultacaoDaPalavra.RealizacaoDaOcultacao();
+            ocultacaoDaPalavra.MostrarPalavraOcultada();
+
+            Console.WriteLine();
+            Console.WriteLine($"{ocultacaoDaPalavra.MostrarPalavraOcultada()}");
+            Console.WriteLine();
+            //---------------------------------------------
+
         }
     }
 }

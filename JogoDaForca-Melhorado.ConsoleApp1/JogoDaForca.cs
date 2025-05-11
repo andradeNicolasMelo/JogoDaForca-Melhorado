@@ -78,4 +78,32 @@ namespace jogoDaForca_Refotorado.ConsoleApp1
             } while (true);
         }
     }
+
+    public class OcultacaoPalavraSecreta
+    {
+        public string palavraSecreta;
+        public char[] LetrasDaPalavraSecreta;
+        public char[] arrayLetrasOcultadas;
+
+        public OcultacaoPalavraSecreta(string temp)
+        {
+            palavraSecreta = temp;
+            LetrasDaPalavraSecreta = palavraSecreta.ToCharArray();
+            arrayLetrasOcultadas = new char[LetrasDaPalavraSecreta.Length];
+        }
+
+        public void RealizacaoDaOcultacao()
+        {
+            for (int i = 0; i < palavraSecreta.Length; i++)
+            {
+                arrayLetrasOcultadas[i] = '-';
+            }
+        }
+        public string MostrarPalavraOcultada()
+        {
+            string palavraSecretaOcultada = string.Join("", arrayLetrasOcultadas);
+
+            return palavraSecretaOcultada;
+        }
+    }
 }
